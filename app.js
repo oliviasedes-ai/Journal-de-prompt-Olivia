@@ -82,7 +82,8 @@ function show(view) {
   document.querySelectorAll("nav button").forEach(b => {
     if (b.dataset.view === view) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
   });
-  $("#title").textContent = { saisir: "Mes prompts", historique: "Historique", reglages: "Réglages" }[view];
+  const titleEl = $("#title") || $("header h1");
+  if (titleEl) titleEl.textContent = { saisir: "Mes prompts", historique: "Historique", reglages: "Réglages" }[view];
   if (view === "historique") renderHist();
   window.scrollTo(0, 0);
 }
